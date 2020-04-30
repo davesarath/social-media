@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hk*c(gn#q3d+hrme+3$$4ldz-_8nujqp$f_6uazbmn(00q#(o_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['dsl-social-media.herokuapp.com','127.0.0.1']
 
