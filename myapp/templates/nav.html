@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">ss</button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <form class="form-inline my-2 my-lg-0" action="/search/">
+
+                     <input class="form-control border-secondary border-right-0 rounded-0 " placeholder="Search" type="search" name="user" id="example-search-input4">
+
+                     <button class="btn btn-outline-secondary my-2 my-sm-0 border-left-0 rounded-0 rounded-right" type="submit">
+                        <i class="fa fa-search"></i>
+                     </button>
+        </form>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        {% if request.user.pro_pic %}
+        <li class="nav-item">
+          <a class="nav-link" href="/account/profile/">  
+            
+            <img src="{{ request.user.pro_pic.url}}" class="img-thumbnail "  style="height: 40px;">
+           </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/account/profile/">  
+
+                 profile <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">                     
+          <a class="nav-link" href="/posts/">My Tweets</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownId">
+            <a class="dropdown-item" href="\inbox\">Inbox</a>
+            <a class="dropdown-item" href="\account\settings\">settings</a>
+            <a class="dropdown-item" href="\logout\">Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </nav><br><br><br>

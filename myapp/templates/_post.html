@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav.html' %}
+<br><br>
+<div class="container ">
+    <br>
+    {% if post.author == request.user %}
+    <a href="/delete/{{post.id}}/" class="ml-auto ">
+        <i class="fa fa-trash" aria-hidden="true"></i> <del>Delete this post</del>
+    </a>
+    {% endif %}
+    <div class="card mx-auto mb-2" style="background-color:cadetblue; border-color:darkblue;">
+      <div class="card-body post ">
+        {% if post.img %}  
+          <img class="card-img-top .d-block mx-auto img-fluid postimg" src="{{post.img.url}}" alt="asxasxds" width=460>
+        {% endif %} 
+          <p class="card-title ">{{post.content}}</p>
+    
+      </div>
+      <div class="card-footer">
+        <a href="/like/{{post.id}}/" data-toggle="tooltip"  title="Show love" ><i class="far fa-thumbs-up  "> {{post.likes}}</i></a>
+        <a href="#" class="card-link " style="float: right;"> <i class="far fa-comment-alt"></i> {{post.comments}}</i></a>
+      </div>
+    </div>
+    <br> <hr>
+    {% for comment in comments %}
+      <div class="col-10">
+          <div class="form-group">
+            <label> &circledcirc; {{comment.user}}  &seArr;</label>    <a href="/delete/{{post.id}}/{{comment.id}}" style="float: right;font-size: 110%;">&CircleTimes; </a>
+            <p class="ml-2">{{comment.comments}}</p>
+          </div>
+      </div><hr>
+    {% endfor %}
+    <hr>
+    <form action="/comment/{{post.id}}/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea class="form-control" name="comments" rows="3" style="resize: none;"></textarea>
+            <button class="btn btn-outline-primary mt-2 " type="submit">Comment</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

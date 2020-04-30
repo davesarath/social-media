@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav.html' %}
+<br><br>
+
+<div class="container">
+    
+{% if data %}
+
+{% if data is request.user %}
+<h3>Your profile</h3>
+{% else %}
+<h3>{{data.username}}'s profile</h3>
+{% endif %}
+
+<div class="row">
+    <div class="mx-auto" >
+        {% if data.pro_pic %}
+        <img  class=" my-4 rounded-top rounded-bottom"  src="{{data.pro_pic.url}}" style="height: 350px !important;" >
+        {% endif %}
+    </div>
+</div>
+<table class="table table-hover table-striped table px-4 ">
+    <tbody >
+
+            <tr >
+                <th>First Name</th>
+                <td>{{data.first_name}}</td>
+            </tr>
+            <tr >
+                <th>Last Name</th>
+                <td>{{data.last_name}}</td>
+            </tr>
+            <tr >
+                <th>Name</th>
+                <td>{{data.first_name }} {{ data.last_name}}</td>
+            </tr>
+            <tr >
+                <th>Email id</th>
+                <td>{{data.email}}</td>
+            </tr>
+            <tr >
+                <th>Loyal Member Since </th>
+                <td>{{data.date_joined}}</td>
+            </tr>
+    </tbody>
+</table>
+
+<a href="/{{data.username}}/posts/"> <p>  view posts</p></a>
+{% if data is not request.user %}
+<a href="/chat/{{data.id}}/"> <p>  send msg</p></a>
+{% endif %}
+
+
+{% else %}
+<h4> such user doesn't exist </h4>
+{% endif %}
+</div>
+
+{% endblock %}

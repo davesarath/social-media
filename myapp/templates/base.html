@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'bt\icon-batman.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static 'bt\css\bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bt\css\custm.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
+    {% block title %}
+    <title>Social Media</title>
+    {% endblock title %}
+</head>
+<body >
+        
+    {% block content %}
+
+        hiii
+    {% endblock content %}
+    <script src=" {% static 'bt\js\jquery-3.2.1.slim.min.js' %} "></script>
+    <script src=" {% static 'bt\js\bootstrap.min.js' %} "></script>
+    <script src=" {% static 'bt\js\popper.min.js' %} "></script>
+    <script src=" {% static 'bt\js\custm.js' %} "></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Social Media</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link href="/static/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/static/js/script.js"></script>
+<script type="text/javascript" src="/static/js/cufon-yui.js"></script>
+<script type="text/javascript" src="/static/js/arial.js"></script>
+<script type="text/javascript" src="/static/js/cuf_run.js"></script>
+
+</head>
+<body>
+<div class="main">
+  {% include 'header.html' %}
+
+
+  <div class="main_resize">
+
+ 
+
+    <br><br><br><br>
+      
+
+
+      <div class="menu_nav">
+        <ul>
+          <li ><a href="/">Home</a></li>
+          <li ><a href="/posts/">My Posts</a></li>
+          <li ><a href="\inbox\">Inbox</a></li>
+          <li class=" dropdown">
+            <a class="dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              
+              <a class="dropdown-item" href="\logout\">Logout</a>
+            </div>
+          </li>
+        </ul>
+        <div class="clr"></div>
+      </div>
+    
+    <hr>
+    <div class="content">
+      <div class="content_bg">
+        <div class="mainbar">
+
+        
+          <div class="article">
+           <hr>
+            <div class="clr"></div>
+            <p class="post-data"><span class="date">{{post.created_date}}</span> &nbsp;|&nbsp; Posted by <a href="/{{post.author.username}}/posts/">{{post.author.username}}</a> &nbsp; {% if post.author.id == request.user.id %} &nbsp; <a href="/delete/{{post.id}}/"><i class="fa fa-trash" aria-hidden="true"></i> <del>Delete</del></a> &nbsp; {% endif %} </p>
+            {% if post.img %}  
+            <img class="mx-auto d-block " src="{{post.img.url}}"  height="250" alt="" />
+            {% endif %} 
+            <p>{{post}}</p>
+            <p class="spec"><a href="/post/{{post.id}}/" class="com fr">Comments ({{post.comments}})</a> <a href="/like/{{post.id}}/" class="rm fl"><i class="far fa-thumbs-up"> {{post.likes}}</i></a></p>
+            <div class="clr"></div>
+          </div>
+          
+            {% for comment in comments %}
+            <hr>
+            <div class="col-10">
+                <div class="form-group">
+                  <label> &circledcirc; {{comment.user}}  &seArr;</label>   {% if comment.user == request.user %} <a href="/delete/{{post.id}}/{{comment.id}}" style="float: right;font-size: 110%;">&CircleTimes; </a> {% endif %}  
+                  <p class="ml-2">{{comment.comments}}</p>
+                </div>
+            </div>
+          {% endfor %}
+          <hr>
+          <form action="/comment/{{post.id}}/" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                  <textarea class="form-control" name="comments" rows="3" style="resize: none;"></textarea>
+                  <button class="btn btn-outline-primary mt-2 " type="submit">Comment</button>
+              </div>
+          </form>
+
+        </div>
+        <div class="sidebar">
+          <div class="gadget">
+            <h2 class="star"><span>Bio</span> Details</h2>
+            <div class="clr"></div>
+            <ul class="sb_menu">
+              <li>First name : {{ post.author.first_name}}</li>
+              <li>Last name : {{ post.author.last_name}}</li>
+              <li>Email id : {{ post.author.email}}</li>
+              <li>Since : {{ post.author.date_joined}}</li>
+            </ul>
+          </div>
+
+          <a style="cursor: grab;" href="/{{ post.author.email}}/posts/">
+            {% if post.author.pro_pic %}
+            <img src="{{post.author.pro_pic.url}}" class="img-thumbnail mx-auto d-block"  style="height: 280px;">
+            {% endif %}
+            <h5 class="text-center"><span >{{ post.author.email}}</span></h5>
+            <h4 class="text-center"><span >{{ post.author.first_name}} {{ post.author.last_name}}</span></h4>
+          </a>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fbg">
+  </div>
+</div>
+{% include 'footer.html' %}
+</body>
+</html>

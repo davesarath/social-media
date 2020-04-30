@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'nav.html' %}
+<br><br><br>
+<div class="container">
+    <table class="table table-inverse settings justify-content-center">
+        <tbody>      
+            <tr>
+                <td >Change Password :</td>
+                <td><a href="{% url 'password_change' %}">change pwd now</a></td>
+            </tr>
+            <tr>
+              
+                <td>Update Details :</td>
+                <td><a href="{% url 'edit' %}">change details now</a></td>
+            </tr>
+
+            <tr>
+              
+                <td>Delete Account</td>
+                <td><span onclick="confrm()">Are you serious?</span></td>
+            </tr>
+        </tbody>
+    </table>    
+</div>
+
+<script>
+function confrm() {
+    var k=confirm("if you delete your account now, you will loss all your account data and it is irreversible")
+    if(k==true){
+        alert("now you are deleting your account")
+        window.location.replace("/account/delete/")
+    }else{
+        alert("Thank you!!!")
+    }
+}
+</script>
+{% endblock content %}

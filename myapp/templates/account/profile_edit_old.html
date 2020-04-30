@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Edit Profile</title>
+{% endblock title %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card mb-4">
+        <div class="card-body mx-auto d-block">
+          {% if request.user.pro_pic %}
+          <div class="px-auto">
+            <img class="mx-auto" src="{{request.user.pro_pic.url}}" alt="sss" width="140">
+          </div>
+          {% endif %}
+          <h2>Edit  Profile</h2>
+          <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <input type="submit" class="btn btn-primary"  value="Update">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

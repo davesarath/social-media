@@ -1,0 +1,22 @@
+
+  <div class="fixed-top">
+    <div class="mx-auto" style=" width: 980px; background-color:#f4f4f4;">
+      <div class="logo">
+        <h1><a href="/"><span>Social</span>Media</a></h1>
+      </div>
+      <div class="search">
+        <form method="GET" id="search" action="/search/">
+          <span>
+            {% csrf_token %}
+          <input type="text" required placeholder="Search..." name="user" id="s" />
+          <input name="searchsubmit" type="image" src="/static/images/search.gif" value="Go" id="searchsubmit" class="btn"  />
+          </span>
+        </form>
+        <!--/searchform -->
+        <div class="clr"></div>
+      </div>
+      <div class="clr"></div>
+    
+  
+    </div>
+  </div>
