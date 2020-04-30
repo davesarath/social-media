@@ -1,0 +1,36 @@
+.edit-icon {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.add-another-btn {
+  border: 2px solid #5C99C7;
+  color: #5C99C7;
+  font-size: 14px;
+  line-height: 1.8em;
+}
+
+.add-another-btn:hover {
+  border: 2px solid #5C99C7;
+  background: #5C99C7;
+  color: white;
+}
+
+.col {
+  opacity: 1;
+}
+
+.msg-input {
+  margin: 1px;
+  width: 100%;
+  min-width: 100%;
+  background-color: rgba(203,189,242,0.5);
+}
+
+.reg-form {
+  background-color: white;
+}
+
+.pro-pic {
+}
+
