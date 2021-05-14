@@ -21,7 +21,7 @@ def path_and_rename(instance,filename):
 
 class custModel(AbstractUser):
     email   =   models.EmailField(max_length=254, null=False, unique=True)
-    pro_pic      =   models.ImageField( upload_to=path_and_rename,null=True)
+    pro_pic      =   models.FileField( upload_to=path_and_rename,null=True)
 
     def save(self, *args, **kwargs):
         if self.email:
@@ -50,7 +50,7 @@ def submission_save(sender, instance, **kwargs):
 
 
 class tweet(models.Model):
-    img=models.ImageField( upload_to='post',blank=True)
+    img=models.FileField( upload_to='post',blank=True)
     author=models.ForeignKey("myapp.custModel", on_delete=models.CASCADE)
     created_date=models.DateTimeField( auto_now=True,editable=False)
     content=models.CharField(max_length=360,blank=True)
